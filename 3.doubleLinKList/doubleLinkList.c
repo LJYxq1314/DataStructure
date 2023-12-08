@@ -151,7 +151,6 @@ int doubleLinkListInsertByPos(DoubleLinkList *pList, ELEMENTTYPE inData, int pos
     return ret;
 }
 
-
 /* 按位删 */
 int doubleLinkListDelByPos(DoubleLinkList *pList, Node *pListNode, int pos)
 {
@@ -217,15 +216,18 @@ int doubleLinkListFindByVal(DoubleLinkList *pList, Node *pListNode, ELEMENTTYPE 
     int ret;
 
     Node *pTravel = pList->head;
-    int count = 0;
+    int count = 0, idx =0 ;
+    int dataArray[] = {0};
     while (pTravel->next != NULL)
     {
         pTravel = pTravel->next;
+        idx++;
         if(pTravel->data == inVal)
         {
+            dataArray[idx - 1] = inVal;
             count++;
+            printf("array[%d] = %d\n",idx-1,inVal);
         }
-
     }
     printf("count=%d\n", count);
 

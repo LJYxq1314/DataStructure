@@ -25,8 +25,10 @@ int main(int argc, char const *argv[])
     doubleLinkListTravel(dList, dNode);
 
     doubleLinkListChangeByPos(dList, dNode, dList->listSize - 1, 99);
+    doubleLinkListTravel(dList, dNode);
 
-    doubleLinkListFindByVal(dList, dNode, 10);
+
+    doubleLinkListFindByVal(dList, dNode, 99);
 
     doubleLinkListTravel(dList, dNode);
     doubleLinkListFree(dList, dNode);
