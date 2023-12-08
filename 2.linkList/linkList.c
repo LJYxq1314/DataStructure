@@ -47,7 +47,6 @@ int linkListInsertTail(ListNode *pListNode, LinkList *pLinkList, ELEMENTTYPE inD
     int ret = 0;
     /* 判空 */
     ListNode *insertNode = createNode(inData);
-
     if(pLinkList->head == NULL)
     {
         pListNode = pLinkList->head;
