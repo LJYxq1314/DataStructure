@@ -17,26 +17,27 @@ int linkListInit(LinkList *pLinkList)
     {
         return -1;
     }
-    else
-    {
-        pLinkList->head->next = NULL;
-        pLinkList->head->data = 0;
-        pLinkList->listSize = 0;
-    }
+    
+    pLinkList->head->next = NULL;
+    pLinkList->head->data = 0;
+    pLinkList->listSize = 0;
+    
     return ret;
 }
 
 /* 创造一个新节点 */
 static ListNode * createNode(ELEMENTTYPE inData)
 {
-    ListNode*newNode=(ListNode *)malloc(sizeof(ListNode) * 1);
-    if (newNode==NULL)
+    ListNode * newNode = (ListNode *)malloc(sizeof(ListNode) * 1);
+    if (newNode == NULL)
     {
         printf("CreateNode malloc error!\n");
         return NULL;
     }
-    newNode->data=inData;
-    newNode->next=NULL;
+    memset(newNode, 0, sizeof(ListNode));
+    
+    newNode->data = inData;
+    newNode->next = NULL;
     return newNode;
 }
 
@@ -46,7 +47,6 @@ int linkListInsertTail(ListNode *pListNode, LinkList *pLinkList, ELEMENTTYPE inD
     int ret = 0;
     /* 判空 */
     ListNode *insertNode = createNode(inData);
-
 
     if(pLinkList->head == NULL)
     {
@@ -59,10 +59,9 @@ int linkListInsertTail(ListNode *pListNode, LinkList *pLinkList, ELEMENTTYPE inD
         {
             pPtravel = pPtravel->next;
         }
-
         pPtravel->next = insertNode;
-        pLinkList->listSize++;
     }
+    pLinkList->listSize++;
 
     return ret;
 }
@@ -82,12 +81,11 @@ int linkListInsertByPos(ListNode *pListNode, LinkList *pLinkList, ELEMENTTYPE in
         pTravel = pTravel->next;
         pos--;
     }
-
     ListNode *insertNode = createNode(inData);
     insertNode->next = pTravel->next;
     pTravel->next = insertNode;
-    
- 
+
+    pLinkList->listSize++;
     return ret;
 }
 
@@ -174,7 +172,7 @@ int linkListTravel(ListNode *pListNode, LinkList *pLinkList)
     int ret = 0;
 
     /* 判空 */
-
+    
     ListNode *pTravel = pLinkList->head;
     while (pTravel->next != NULL)
     {
